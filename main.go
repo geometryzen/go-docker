@@ -18,10 +18,10 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	query := r.URL.Query()
 	name := query.Get("name")
 	if name == "" {
-		name = "Guest"
+		name = "World"
 	}
 	log.Printf("Received request for %s\n", name)
-	w.Write([]byte(fmt.Sprintf("Hello, %s\n", name)))
+	w.Write([]byte(fmt.Sprintf("Hello, %s!\n", name)))
 }
 
 func main() {
@@ -38,10 +38,10 @@ func main() {
 	}
 
 	// Configure Logging
-	LOG_FILE_LOCATION := os.Getenv("LOG_FILE_LOCATION")
-	if LOG_FILE_LOCATION != "" {
+	logFilename := os.Getenv("LOG_FILE_LOCATION")
+	if logFilename != "" {
 		log.SetOutput(&lumberjack.Logger{
-			Filename:   LOG_FILE_LOCATION,
+			Filename:   logFilename,
 			MaxSize:    500, // megabytes
 			MaxBackups: 3,
 			MaxAge:     28,   //days

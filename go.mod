@@ -1,4 +1,4 @@
-module github.com/geometryzen/rpi-go-docker
+module github.com/geometryzen/go-docker
 
 require (
 	github.com/gorilla/mux v1.7.0
