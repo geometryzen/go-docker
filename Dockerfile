@@ -46,7 +46,7 @@ COPY --from=builder /go/bin/go-docker .
 EXPOSE 8080
 
 # Declare volumes to mount
-VOLUME ["/go-docker/logs"]
+VOLUME ["./go-docker/logs"]
 
 # Run the executable
 CMD ["./go-docker"]
