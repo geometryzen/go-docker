@@ -7,7 +7,8 @@ docker build -t go-docker .
 ```
 
 ```
-docker run -d -p 8080:8080 go-docker
+mkdir ~/app-logs
+docker run -d -p 8080:8080 -v ~/app-logs:/go-docker/logs go-docker
 ```
 
 ```
