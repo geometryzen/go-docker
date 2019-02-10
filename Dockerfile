@@ -6,16 +6,6 @@ FROM golang:1.11 as builder
 # Add Maintainer Info
 LABEL maintainer="David Geo Holmes <david.geo.holmes@gmail.com>"
 
-# Build Args
-ARG APP_NAME=go-docker
-ARG LOG_DIR=/${APP_NAME}/logs
-
-# Create Log Directory
-RUN mkdir -p ${LOG_DIR}
-
-# Environment Variables
-ENV LOG_FILE_LOCATION=${LOG_DIR}/app.log
-
 # Set the Current Working Directory inside the container
 WORKDIR $GOPATH/src/github.com/geometryzen/go-docker
 
@@ -36,6 +26,16 @@ RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o /go/bin/go-docker
 FROM alpine:latest  
 
 RUN apk --no-cache add ca-certificates
+
+# Build Args
+ARG APP_NAME=go-docker
+ARG LOG_DIR=/${APP_NAME}/logs
+
+# Create Log Directory
+RUN mkdir -p ${LOG_DIR}
+
+# Environment Variables
+ENV LOG_FILE_LOCATION=${LOG_DIR}/app.log
 
 WORKDIR /root/
 
