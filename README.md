@@ -20,5 +20,10 @@ docker container ls
 ```
 
 ```
+cd ~/app-logs
+tail -200f app.log
+```
+
+```
 docker container stop <CONTAINER ID>
 ```
