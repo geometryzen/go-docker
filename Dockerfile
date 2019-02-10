@@ -19,8 +19,8 @@ RUN go get -d -v ./...
 # Install the package
 # RUN go install -v ./...
 
-# Build the Go app
-RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o /go/bin/go-docker .
+# Build the Go app targeting Raspberry Pi (arm32v7)
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=arm GOARM=7 go build -a -installsuffix cgo -o /go/bin/go-docker .
 
 ######## Start a new stage from scratch #######
 FROM alpine:latest  
